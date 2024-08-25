@@ -1,0 +1,9 @@
+<% layout('layouts/base') %>
+
+<div class="container my-4">
+    <h1>Error</h1>
+    <p class="lead my-5"><%= err.message%></p>
+      <%  if(process.env.NODE_ENV !== "production"){ %>
+        <p><%= err.stack %></p>
+      <% } %>
+</div>

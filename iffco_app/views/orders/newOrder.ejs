@@ -1,0 +1,65 @@
+<% layout('layouts/base') %>
+
+<div class="container">
+    <div class="bg-light rounded-lg p-4 mt-4">
+        
+        <form method="post" action="/orders/<%= partner.contact %>/new">
+          
+          <div class="row g-3">
+          <div class="col-md-12 p-4">
+
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Product</th>
+                  <th scope="col">Quantity</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% for(let product of products){ %>
+                <tr>
+                  <td><%= product.name %></td>
+                  <td>
+                    <input type="text" class="form-control" id="inputName" name="products[][prodId]" value="<%= product._id %>" hidden>
+                    <input type="number" class="form-control" id="inputQty" name="products[][qty]" value="0" min="0">
+                  </td>
+                </tr>
+                <% } %>
+              </tbody>
+            </table>
+            
+          </div>
+
+          <div class="col-md-12 p-4">
+              <div class="row g-3">
+                <h4>Billing Information</h4>
+              <div class="col-md-6">
+                <label for="inputName" class="form-label">Customer Name</label>
+                <input type="text" class="form-control" id="inputName" readonly placeholder="<%= partner.name %>">
+              </div>
+              <div class="col-md-6">
+                  <label for="inputContact" class="form-label">Contact</label>
+                  <input type="number" class="form-control" id="inputContact" readonly placeholder="<%= partner.contact %>">
+                </div>
+              <div class="col-12">
+                <label for="inputAddress" class="form-label">Address</label>
+                <input type="text" class="form-control" id="inputAddress" readonly placeholder="<%= partner.address.location %>">
+              </div>
+              <div class="col-md-6">
+                <label for="inputState" class="form-label">State</label>
+                <input type="text" class="form-control" id="inputState" readonly placeholder="<%= partner.address.state %>">
+              </div>
+              <div class="col-md-6">
+                <label for="inputZip" class="form-label">Zip</label>
+                <input type="number" class="form-control" id="inputZip" readonly placeholder="<%= partner.address.pincode %>">
+              </div>
+              <div class="col-12">
+                <button type="submit" class="btn btn-primary">Place Order</button>
+              </div>
+              </div>
+          </div>
+        </div>
+        </form>
+
+    </div>
+</div>
